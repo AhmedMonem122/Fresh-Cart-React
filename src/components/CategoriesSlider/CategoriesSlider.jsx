@@ -12,7 +12,7 @@ const CategoriesSlider = () => {
       data: { data },
     } = await axios.get(CATEGORIES_URL);
 
-    setCategories(...categories, data);
+    setCategories(data);
   };
 
   useEffect(() => {

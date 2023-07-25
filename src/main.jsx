@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(

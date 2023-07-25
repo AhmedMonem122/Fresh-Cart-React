@@ -93,3 +93,15 @@ nav {
   opacity: 1;
   transform: translateY(0);
 }
+
+.addWishlist1,
+.delWishlist1 {
+  cursor: pointer;
+}
+.addWishlist1:hover {
+  color: #dc3545 !important;
+}
+
+.star-main {
+  color: #ffc908 !important;
+}
