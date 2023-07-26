@@ -1,30 +1,12 @@
 import ReactPaginate from "react-paginate";
 
-const Pagination = ({
-  pageCount,
-  setStart,
-  setEnd,
-  end,
-  products,
-  renderedProductsPerPage,
-}) => {
-  // console.log(pageCount);
-
-  // console.log("end outside handlePageClick: ", end);
-
+const Pagination = ({ pageCount, setStart, setEnd }) => {
   const handlePageClick = ({ selected }) => {
-    // console.log(selected + 1);
-    // renderedProductsPerPage(selected * 8, (selected + 1) * 8);
-
     setStart(selected * 8);
     setEnd((selected + 1) * 8);
 
-    // console.log("end inside handlePageClick: ", end);
     console.log(selected + 1);
-    // console.log(products.length / 8 + 2 === selected + 1);
   };
-
-  // handlePageClick({ selected: 0 });
 
   return (
     <ReactPaginate

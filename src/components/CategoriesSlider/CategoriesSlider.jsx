@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import Slider from "react-slick";
 import axios from "../../apis/axios";
+import CategoryItem from "./CategoryItem";
 
 const CATEGORIES_URL = "/categories";
 
@@ -35,21 +36,7 @@ const CategoriesSlider = () => {
 
       <Slider {...settings}>
         {categories.map((category) => {
-          const { _id, name, image } = category;
-
-          return (
-            <div key={_id}>
-              <div>
-                <img
-                  src={image}
-                  alt={name}
-                  className="w-100 rounded-5"
-                  style={{ height: "200px" }}
-                />
-                <h2 className="h6 pt-2 text-center text-success">{name}</h2>
-              </div>
-            </div>
-          );
+          return <CategoryItem key={category._id} {...category} />;
         })}
       </Slider>
     </Fragment>
