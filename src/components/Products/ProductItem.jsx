@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 const ProductItem = ({
   id,
@@ -46,11 +47,11 @@ const ProductItem = ({
             <h6 className="text-muted">{ratingsAverage}</h6>
           </span>
         </div>
-        <a href="/">
+        <Link to={`/productDetails/${id}`}>
           <button className="btn btn-success text-white w-100 mb-2 rounded-5 fw-bolder">
             Show More about this Product
           </button>
-        </a>
+        </Link>
       </div>
     </div>
   );
