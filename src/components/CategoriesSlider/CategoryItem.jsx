@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 const CategoryItem = ({ _id, name, image }) => {
   return (
     <div>
-      <div>
+      <Link to={`/categoryProducts/${_id}`}>
         <img
           src={image}
           alt={name}
@@ -9,7 +11,7 @@ const CategoryItem = ({ _id, name, image }) => {
           style={{ height: "200px" }}
         />
         <h2 className="h6 pt-2 text-center text-success">{name}</h2>
-      </div>
+      </Link>
     </div>
   );
 };

@@ -105,3 +105,7 @@ nav {
 .star-main {
   color: #ffc908 !important;
 }
+
+a {
+  text-decoration: none !important;
+}

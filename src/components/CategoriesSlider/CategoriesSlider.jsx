@@ -1,20 +1,22 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import Slider from "react-slick";
-import axios from "../../apis/axios";
 import CategoryItem from "./CategoryItem";
+import useFetch from "../../hooks/use-fetch";
 
 const CATEGORIES_URL = "/categories";
 
 const CategoriesSlider = () => {
-  const [categories, setCategories] = useState([]);
+  const [categories, , getAllCategories] = useFetch(CATEGORIES_URL);
 
-  const getAllCategories = async () => {
-    const {
-      data: { data },
-    } = await axios.get(CATEGORIES_URL);
+  // const [categories, setCategories] = useState([]);
 
-    setCategories(data);
-  };
+  // const getAllCategories = async () => {
+  //   const {
+  //     data: { data },
+  //   } = await axios.get(CATEGORIES_URL);
+
+  //   setCategories(data);
+  // };
 
   useEffect(() => {
     getAllCategories();
