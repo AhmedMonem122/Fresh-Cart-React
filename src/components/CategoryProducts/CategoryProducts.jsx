@@ -1,21 +1,19 @@
-import { useEffect } from "react";
 import useFetch from "../../hooks/use-fetch";
 import CategoryProductItem from "./CategoryProductItem";
 import { useParams } from "react-router-dom";
 import notFoundProduct from "../../assets/images/no-product-found.png";
+import Loading from "../Loading/Loading";
 
 const CategoryProducts = () => {
   const { id } = useParams();
 
   const CATEGORY_PRODUCTS_URL = `/products/?category=${id}`;
 
-  const [categoryProducts, , getAllCategoryProducts] = useFetch(
-    CATEGORY_PRODUCTS_URL
-  );
+  const [categoryProducts, loading] = useFetch(CATEGORY_PRODUCTS_URL);
 
-  useEffect(() => {
-    getAllCategoryProducts();
-  }, []);
+  // useEffect(() => {
+  //   getAllCategoryProducts();
+  // }, []);
 
   console.log(id);
 
@@ -24,7 +22,9 @@ const CategoryProducts = () => {
   return (
     <div className="container py-2">
       <div className="row g-5 my-5">
-        {categoryProducts.length ? (
+        {loading ? (
+          <Loading />
+        ) : categoryProducts.length ? (
           categoryProducts.map((categoryProduct) => {
             return (
               <CategoryProductItem

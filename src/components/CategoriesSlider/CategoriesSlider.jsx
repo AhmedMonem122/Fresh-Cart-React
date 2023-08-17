@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import Slider from "react-slick";
 import CategoryItem from "./CategoryItem";
 import useFetch from "../../hooks/use-fetch";
@@ -6,7 +6,7 @@ import useFetch from "../../hooks/use-fetch";
 const CATEGORIES_URL = "/categories";
 
 const CategoriesSlider = () => {
-  const [categories, , getAllCategories] = useFetch(CATEGORIES_URL);
+  const [categories] = useFetch(CATEGORIES_URL);
 
   // const [categories, setCategories] = useState([]);
 
@@ -18,9 +18,9 @@ const CategoriesSlider = () => {
   //   setCategories(data);
   // };
 
-  useEffect(() => {
-    getAllCategories();
-  }, []);
+  // useEffect(() => {
+  //   getAllCategories();
+  // }, []);
 
   var settings = {
     dots: true,

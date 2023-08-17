@@ -109,3 +109,8 @@ nav {
 a {
   text-decoration: none !important;
 }
+
+.brand-item:hover,
+.cart-customize:hover {
+  box-shadow: 15px 15px 15px #add8e6 !important;
+}
