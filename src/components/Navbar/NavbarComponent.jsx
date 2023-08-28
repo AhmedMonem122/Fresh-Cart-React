@@ -19,7 +19,10 @@ const NavbarComponent = () => {
               Brands
             </Nav.Link>
             <Nav.Link as={Link} to="/categories">
-              Category
+              Categories
+            </Nav.Link>
+            <Nav.Link as={Link} to="/products">
+              All Products
             </Nav.Link>
           </Nav>
           <Nav>

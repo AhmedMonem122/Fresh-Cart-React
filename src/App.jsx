@@ -8,6 +8,8 @@ import ProductDetails from "./components/ProductDetails/ProductDetails";
 import CategoriesPage from "./pages/CategoriesPage/CategoriesPage";
 import CategoryProducts from "./components/CategoryProducts/CategoryProducts";
 import BrandsPage from "./pages/BrandsPage/BrandsPage";
+import BrandProducts from "./components/BrandProducts/BrandProducts";
+import AllProductsPage from "./pages/AllProductsPage/AllProductsPage";
 
 function App() {
   return (
@@ -17,8 +19,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/brands" element={<BrandsPage />} />
+        <Route path="/products" element={<AllProductsPage />} />
         <Route path="/productDetails/:id" element={<ProductDetails />} />
         <Route path="/categoryProducts/:id" element={<CategoryProducts />} />
+        <Route path="/brandProducts/:id" element={<BrandProducts />} />
       </Routes>
       <Footer />
     </Fragment>
