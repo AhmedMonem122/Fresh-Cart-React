@@ -114,3 +114,14 @@ a {
 .cart-customize:hover {
   box-shadow: 15px 15px 15px #add8e6 !important;
 }
+
+.forgetPass:hover,
+.signIn:hover {
+  color: #198754 !important;
+  font-weight: 700;
+}
+
+.fa-eye {
+  color: #198754 !important;
+  cursor: pointer;
+}
