@@ -125,3 +125,12 @@ a {
   color: #198754 !important;
   cursor: pointer;
 }
+
+.numCustomize,
+.wishCustomize {
+  height: 25px;
+  position: absolute;
+  top: -7px;
+  width: 25px;
+  left: 30px;
+}

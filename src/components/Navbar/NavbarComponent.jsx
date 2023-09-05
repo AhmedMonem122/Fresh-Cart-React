@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import freshCartLogo from "../../assets/images/freshcart-logo.svg";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import useAuth from "../../hooks/use-auth";
+import { Fragment } from "react";
 
 const NavbarComponent = () => {
+  const { userData, handleLogout } = useAuth();
+
   return (
     <Navbar collapseOnSelect expand="lg" className="">
       <Container>
@@ -26,12 +30,47 @@ const NavbarComponent = () => {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link as={Link} to="/login">
-              Login
-            </Nav.Link>
-            <Nav.Link as={Link} to="/register">
-              Register
-            </Nav.Link>
+            {userData ? (
+              <Fragment>
+                {" "}
+                <Nav.Link as={Link} to="/cart" className="position-relative">
+                  <i className="fa-solid fa-cart-arrow-down text-success fs-3">
+                    <div className="numCustomize rounded-3 bg-success d-flex justify-content-center align-items-center">
+                      <span className="text-white fs-6">4</span>
+                    </div>
+                  </i>
+                </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/wishlist"
+                  className="position-relative"
+                >
+                  <i className="fa-solid fa-heart text-danger fs-3">
+                    <div className="wishCustomize rounded-3 bg-danger d-flex justify-content-center align-items-center">
+                      <span className="text-white fs-6">0</span>
+                    </div>
+                  </i>
+                </Nav.Link>
+                <Nav.Link as={Link} to="/allOrders">
+                  All Orders
+                </Nav.Link>
+                <Nav.Item>
+                  <button className="px-0 py-2 btn" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </Nav.Item>
+              </Fragment>
+            ) : (
+              <Fragment>
+                {" "}
+                <Nav.Link as={Link} to="/login">
+                  Login
+                </Nav.Link>
+                <Nav.Link as={Link} to="/register">
+                  Register
+                </Nav.Link>
+              </Fragment>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

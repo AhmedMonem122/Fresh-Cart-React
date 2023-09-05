@@ -63,10 +63,17 @@ const Register = () => {
     } catch (error) {
       setLoader(false);
       console.log("Error : ", error);
-      toast.error("Email Is Already Used", {
-        duration: 3000,
-        className: " text-danger px-5 fw-bolder my-3",
-      });
+      if (error.response.data?.errors) {
+        toast.error(error.response.data.errors.msg, {
+          duration: 3000,
+          className: " text-danger px-5 fw-bolder my-3",
+        });
+      } else {
+        toast.error(error.response.data.message, {
+          duration: 3000,
+          className: " text-danger px-5 fw-bolder my-3",
+        });
+      }
     }
   }
 
@@ -180,7 +187,6 @@ const Register = () => {
           <button
             type="button"
             className="btn btn-outline-success mt-3 fw-bolder"
-            disabled={!formik.isValid}
           >
             <span
               className="spinner-border spinner-border-sm "
