@@ -1,33 +1,23 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
-import useWishlist from "../../hooks/use-wishlist";
 
-const ProductItem = ({
-  id,
+const WishlistProductItem = ({
   imageCover,
+  title,
+  name,
+  wishlistProduct,
   price,
   ratingsAverage,
-  title,
-  category: { name },
-  product,
+  id,
 }) => {
-  const { dataProductId, handleAddOrRemoveWishlist } = useWishlist();
-
-  const productId = dataProductId.find((productId) => productId === id);
-
   return (
     <div className="col-lg-3 col-md-6 col-sm-12">
       <div className="cart-customize item text-white h-100 rounded-5 position-relative shadow">
-        <div
-          className="position-absolute top-0 end-0 m-3"
-          onClick={() => handleAddOrRemoveWishlist(productId, id)}
-        >
-          {productId === id ? (
-            <i className="fa-solid fa-heart fs-4 text-danger delWishlist1"></i>
-          ) : (
-            <i className=" fa-regular fa-heart text-dark fs-4  addWishlist1"></i>
-          )}
-        </div>
+        <i className=" fa-regular fa-heart text-dark fs-4 position-absolute top-0 end-0 m-3 addWishlist1"></i>
+        <i
+          className="fa-solid fa-heart fs-4 position-absolute top-0 end-0 m-3 text-danger delWishlist1"
+          style={{ display: "none" }}
+        ></i>
         <img
           src={imageCover}
           className="w-100 rounded-5"
@@ -38,14 +28,14 @@ const ProductItem = ({
         <h6 className="px-3 text-black">{name}</h6>
         <div className="d-flex justify-content-between align-items-center">
           <h6 className="px-3 text-muted py-1">
-            {product?.priceAfterDiscount ? (
+            {wishlistProduct?.priceAfterDiscount ? (
               <Fragment>
                 {" "}
                 <span className="text-decoration-line-through text-danger">
                   {price}{" "}
                 </span>
                 <span className="fw-bold ps-2 text-success">
-                  {product?.priceAfterDiscount} EGP
+                  {wishlistProduct?.priceAfterDiscount} EGP
                 </span>
               </Fragment>
             ) : (
@@ -59,7 +49,7 @@ const ProductItem = ({
         </div>
         <Link to={`/productDetails/${id}`}>
           <button className="btn btn-success text-white w-100 mb-2 rounded-5 fw-bolder">
-            Show More about this Product
+            Add To Cart
           </button>
         </Link>
       </div>
@@ -67,4 +57,4 @@ const ProductItem = ({
   );
 };
 
-export default ProductItem;
+export default WishlistProductItem;

@@ -14,26 +14,34 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import AuthContextProvider from "./context/AuthContextProvider";
 import { Toaster } from "react-hot-toast";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import WishlistPage from "./pages/WishlistPage/WishlistPage";
+import WishlistContextProvider from "./context/WishlistContextProvider";
 
 function App() {
   return (
     <Fragment>
       <AuthContextProvider>
-        <Toaster position="top-center" reverseOrder={false} />
+        <WishlistContextProvider>
+          <Toaster position="top-center" reverseOrder={false} />
 
-        <NavbarComponent />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/categories" element={<CategoriesPage />} />
-          <Route path="/brands" element={<BrandsPage />} />
-          <Route path="/products" element={<AllProductsPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/productDetails/:id" element={<ProductDetails />} />
-          <Route path="/categoryProducts/:id" element={<CategoryProducts />} />
-          <Route path="/brandProducts/:id" element={<BrandProducts />} />
-        </Routes>
-        <Footer />
+          <NavbarComponent />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/brands" element={<BrandsPage />} />
+            <Route path="/products" element={<AllProductsPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/wishlist" element={<WishlistPage />} />
+            <Route path="/productDetails/:id" element={<ProductDetails />} />
+            <Route
+              path="/categoryProducts/:id"
+              element={<CategoryProducts />}
+            />
+            <Route path="/brandProducts/:id" element={<BrandProducts />} />
+          </Routes>
+          <Footer />
+        </WishlistContextProvider>
       </AuthContextProvider>
     </Fragment>
   );
