@@ -26,6 +26,7 @@ const AuthContextProvider = ({ children }) => {
   const handleLogout = () => {
     setUserData(null);
     localStorage.removeItem("userToken");
+    localStorage.removeItem("wishlistDataIds");
     navigate("/login");
   };
 

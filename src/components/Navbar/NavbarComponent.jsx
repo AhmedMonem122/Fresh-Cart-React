@@ -3,9 +3,18 @@ import freshCartLogo from "../../assets/images/freshcart-logo.svg";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import useAuth from "../../hooks/use-auth";
 import { Fragment } from "react";
+import useWishlist from "../../hooks/use-wishlist";
+import { useEffect } from "react";
 
 const NavbarComponent = () => {
   const { userData, handleLogout } = useAuth();
+  const { getLoggedUserWishlist, wishlistCount } = useWishlist();
+
+  useEffect(() => {
+    if (localStorage.getItem("userToken")) {
+      getLoggedUserWishlist();
+    }
+  }, [wishlistCount]);
 
   return (
     <Navbar collapseOnSelect expand="lg" className="">
@@ -47,7 +56,7 @@ const NavbarComponent = () => {
                 >
                   <i className="fa-solid fa-heart text-danger fs-3">
                     <div className="wishCustomize rounded-3 bg-danger d-flex justify-content-center align-items-center">
-                      <span className="text-white fs-6">0</span>
+                      <span className="text-white fs-6">{wishlistCount}</span>
                     </div>
                   </i>
                 </Nav.Link>

@@ -14,7 +14,7 @@ const WishlistProducts = () => {
     <Fragment>
       {isLoading ? (
         <Loading />
-      ) : (
+      ) : wishlistProducts.length ? (
         wishlistProducts.map((wishlistProduct) => {
           return (
             <WishlistProductItem
@@ -24,6 +24,10 @@ const WishlistProducts = () => {
             />
           );
         })
+      ) : (
+        <div className="mt-5 pt-5 text-success fw-bolder text-center text-muted">
+          You haven&apos;t added any products in your wishlist
+        </div>
       )}
     </Fragment>
   );

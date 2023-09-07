@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
+import useWishlist from "../../hooks/use-wishlist";
 
 const WishlistProductItem = ({
   imageCover,
@@ -10,14 +11,20 @@ const WishlistProductItem = ({
   ratingsAverage,
   id,
 }) => {
+  const { removeFromWishlist, getLoggedUserWishlist } = useWishlist();
+
   return (
     <div className="col-lg-3 col-md-6 col-sm-12">
       <div className="cart-customize item text-white h-100 rounded-5 position-relative shadow">
-        <i className=" fa-regular fa-heart text-dark fs-4 position-absolute top-0 end-0 m-3 addWishlist1"></i>
-        <i
-          className="fa-solid fa-heart fs-4 position-absolute top-0 end-0 m-3 text-danger delWishlist1"
-          style={{ display: "none" }}
-        ></i>
+        <div
+          className="position-absolute top-0 end-0 m-3"
+          onClick={() => {
+            removeFromWishlist(id);
+            getLoggedUserWishlist();
+          }}
+        >
+          <i className="fa-solid fa-heart fs-4 text-danger delWishlist1"></i>
+        </div>
         <img
           src={imageCover}
           className="w-100 rounded-5"
