@@ -14,7 +14,7 @@ const NavbarComponent = () => {
     if (localStorage.getItem("userToken")) {
       getLoggedUserWishlist();
     }
-  }, [wishlistCount]);
+  }, []);
 
   return (
     <Navbar collapseOnSelect expand="lg" className="">

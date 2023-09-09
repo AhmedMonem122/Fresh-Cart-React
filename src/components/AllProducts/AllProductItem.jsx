@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
+import useWishlist from "../../hooks/use-wishlist";
 
 const AllProductItem = ({
   id,
@@ -10,14 +11,34 @@ const AllProductItem = ({
   category: { name },
   product,
 }) => {
+  const { dataProductId, handleAddOrRemoveWishlist, getLoggedUserWishlist } =
+    useWishlist();
+
+  console.log(dataProductId);
+
+  const productId = dataProductId.find((productId) => productId === id);
+
+  console.log(productId);
+
   return (
     <div className="col-lg-3 col-md-6 col-sm-12">
       <div className="cart-customize item text-white h-100 rounded-5 position-relative shadow">
-        <i className=" fa-regular fa-heart text-dark fs-4 position-absolute top-0 end-0 m-3 addWishlist1"></i>
-        <i
-          className="fa-solid fa-heart fs-4 position-absolute top-0 end-0 m-3 text-danger delWishlist1"
-          style={{ display: "none" }}
-        ></i>
+        <div
+          className="position-absolute top-0 end-0 m-3"
+          onClick={() => {
+            handleAddOrRemoveWishlist(productId, id);
+            getLoggedUserWishlist();
+          }}
+        >
+          {productId === id &&
+          productId &&
+          localStorage.getItem("userToken") &&
+          JSON.parse(localStorage.getItem("wishlistDataIds")) ? (
+            <i className="fa-solid fa-heart fs-4 text-danger delWishlist1"></i>
+          ) : (
+            <i className=" fa-regular fa-heart text-dark fs-4  addWishlist1"></i>
+          )}
+        </div>
         <img
           src={imageCover}
           className="w-100 rounded-5"

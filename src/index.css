@@ -134,3 +134,13 @@ a {
   width: 25px;
   left: 30px;
 }
+
+.order,
+.orderPayment {
+  border: 2px solid #36bb70;
+}
+
+.orderPayment {
+  height: 250px;
+  width: 250px;
+}

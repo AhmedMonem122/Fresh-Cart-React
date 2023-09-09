@@ -1,11 +1,16 @@
 import { Fragment } from "react";
 import WishlistProducts from "../../components/WishlistProducts/WishlistProducts";
+import useAuth from "../../hooks/use-auth";
 
 const WishlistPage = () => {
+  const { userData } = useAuth();
+
+  console.log(userData);
+
   return (
     <Fragment>
       <h3 className="mt-5 pt-5 text-success fw-bolder text-center text-muted">
-        Welcome User to your Wishlist{" "}
+        Welcome {userData?.name} to your Wishlist{" "}
         <i className="fa-solid fa-heart text-danger"></i>{" "}
       </h3>
 

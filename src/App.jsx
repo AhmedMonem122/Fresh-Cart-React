@@ -16,6 +16,9 @@ import { Toaster } from "react-hot-toast";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import WishlistPage from "./pages/WishlistPage/WishlistPage";
 import WishlistContextProvider from "./context/WishlistContextProvider";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import NotFound from "./components/NotFound/NotFound";
+import CartPage from "./pages/CartPage/CartPage";
 
 function App() {
   return (
@@ -32,13 +35,22 @@ function App() {
             <Route path="/products" element={<AllProductsPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/wishlist" element={<WishlistPage />} />
+            <Route
+              path="/wishlist"
+              element={
+                <ProtectedRoute>
+                  <WishlistPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/cart" element={<CartPage />} />
             <Route path="/productDetails/:id" element={<ProductDetails />} />
             <Route
               path="/categoryProducts/:id"
               element={<CategoryProducts />}
             />
             <Route path="/brandProducts/:id" element={<BrandProducts />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </WishlistContextProvider>

@@ -5,9 +5,11 @@ import useAuth from "../../hooks/use-auth";
 import { useNavigate } from "react-router-dom";
 import axios from "../../apis/axios";
 import { toast } from "react-hot-toast";
+import useWishlist from "../../hooks/use-wishlist";
 
 const Login = () => {
   const { saveUserData } = useAuth();
+  const { getLoggedUserWishlist } = useWishlist();
 
   const [showPassword, setShowPassword] = useState(false);
   const [loader, setLoader] = useState(false);
@@ -52,6 +54,7 @@ const Login = () => {
         });
         localStorage.setItem("userToken", data.token);
         saveUserData();
+        getLoggedUserWishlist();
         navigate("/");
       }
     } catch (error) {
