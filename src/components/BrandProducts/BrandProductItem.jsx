@@ -11,12 +11,14 @@ const BrandProductItem = ({
   ratingsAverage,
   id,
 }) => {
-  const { dataProductId, handleAddOrRemoveWishlist, getLoggedUserWishlist } =
+  const { wishlistProducts, handleAddOrRemoveWishlist, getLoggedUserWishlist } =
     useWishlist();
 
-  console.log(dataProductId);
+  console.log(wishlistProducts);
 
-  const productId = dataProductId.find((productId) => productId === id);
+  const productId = wishlistProducts.find(
+    (wishlistProduct) => wishlistProduct.id === id
+  );
 
   console.log(productId);
 
@@ -30,7 +32,7 @@ const BrandProductItem = ({
             getLoggedUserWishlist();
           }}
         >
-          {productId === id &&
+          {productId?.id === id &&
           productId &&
           localStorage.getItem("userToken") &&
           JSON.parse(localStorage.getItem("wishlistDataIds")) ? (

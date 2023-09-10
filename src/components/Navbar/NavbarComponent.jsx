@@ -5,14 +5,17 @@ import useAuth from "../../hooks/use-auth";
 import { Fragment } from "react";
 import useWishlist from "../../hooks/use-wishlist";
 import { useEffect } from "react";
+import useCart from "../../hooks/use-cart";
 
 const NavbarComponent = () => {
   const { userData, handleLogout } = useAuth();
   const { getLoggedUserWishlist, wishlistCount } = useWishlist();
+  const { getLoggedUserCart, numOfCartItems } = useCart();
 
   useEffect(() => {
     if (localStorage.getItem("userToken")) {
       getLoggedUserWishlist();
+      getLoggedUserCart();
     }
   }, []);
 
@@ -45,7 +48,7 @@ const NavbarComponent = () => {
                 <Nav.Link as={Link} to="/cart" className="position-relative">
                   <i className="fa-solid fa-cart-arrow-down text-success fs-3">
                     <div className="numCustomize rounded-3 bg-success d-flex justify-content-center align-items-center">
-                      <span className="text-white fs-6">4</span>
+                      <span className="text-white fs-6">{numOfCartItems}</span>
                     </div>
                   </i>
                 </Nav.Link>

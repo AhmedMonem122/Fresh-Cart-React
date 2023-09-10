@@ -19,41 +19,44 @@ import WishlistContextProvider from "./context/WishlistContextProvider";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import NotFound from "./components/NotFound/NotFound";
 import CartPage from "./pages/CartPage/CartPage";
+import CartContextProvider from "./context/CartContextProvider";
 
 function App() {
   return (
     <Fragment>
       <AuthContextProvider>
-        <WishlistContextProvider>
-          <Toaster position="top-center" reverseOrder={false} />
+        <CartContextProvider>
+          <WishlistContextProvider>
+            <Toaster position="top-center" reverseOrder={false} />
 
-          <NavbarComponent />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/categories" element={<CategoriesPage />} />
-            <Route path="/brands" element={<BrandsPage />} />
-            <Route path="/products" element={<AllProductsPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route
-              path="/wishlist"
-              element={
-                <ProtectedRoute>
-                  <WishlistPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/productDetails/:id" element={<ProductDetails />} />
-            <Route
-              path="/categoryProducts/:id"
-              element={<CategoryProducts />}
-            />
-            <Route path="/brandProducts/:id" element={<BrandProducts />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </WishlistContextProvider>
+            <NavbarComponent />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/categories" element={<CategoriesPage />} />
+              <Route path="/brands" element={<BrandsPage />} />
+              <Route path="/products" element={<AllProductsPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route
+                path="/wishlist"
+                element={
+                  <ProtectedRoute>
+                    <WishlistPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/productDetails/:id" element={<ProductDetails />} />
+              <Route
+                path="/categoryProducts/:id"
+                element={<CategoryProducts />}
+              />
+              <Route path="/brandProducts/:id" element={<BrandProducts />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </WishlistContextProvider>
+        </CartContextProvider>
       </AuthContextProvider>
     </Fragment>
   );

@@ -3,10 +3,13 @@ import axios from "../../apis/axios";
 import { useParams } from "react-router-dom";
 import { Fragment, useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
+import useCart from "../../hooks/use-cart";
 
 const PRODUCT_DETAILS_URL = "/products/";
 
 const ProductDetails = () => {
+  const { addToCart } = useCart();
+
   const [productDetails, setProductDetails] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -87,15 +90,12 @@ const ProductDetails = () => {
                 )}
               </h6>
               <h6 className="py-2 text-muted">Quantity : {quantity}</h6>
-              <button id="addBtn" className="btnAdd btn btn-success w-100 mt-5">
-                Add Product to Cart +
-              </button>
               <button
-                id="delBtn"
-                className="btnRemove w-100 mt-5 btn btn-danger"
-                style={{ display: "none" }}
+                id="addBtn"
+                className="btnAdd btn btn-success w-100 mt-5"
+                onClick={() => addToCart(id)}
               >
-                Remove Product From Cart -
+                Add Product to Cart +
               </button>
             </div>
           </Fragment>

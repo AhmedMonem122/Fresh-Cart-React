@@ -14,8 +14,8 @@ const wishlistDataIds =
 export const WishlistContext = createContext();
 
 const WishlistContextProvider = ({ children }) => {
-  const [dataProductId, setDataProductId] = useState(wishlistDataIds);
-  const [wishlistProducts, setWishlistProducts] = useState([]);
+  // const [dataProductId, setDataProductId] = useState(wishlistDataIds);
+  const [wishlistProducts, setWishlistProducts] = useState(wishlistDataIds);
   const [wishlistCount, setWishlistCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,8 +34,8 @@ const WishlistContextProvider = ({ children }) => {
       );
 
       console.log(data);
-      localStorage.setItem("wishlistDataIds", JSON.stringify(data.data));
-      setDataProductId(JSON.parse(localStorage.getItem("wishlistDataIds")));
+      // localStorage.setItem("wishlistDataIds", JSON.stringify(data.data));
+      // setDataProductId(JSON.parse(localStorage.getItem("wishlistDataIds")));
       toast.success(data.message, {
         duration: 3000,
         className: "text-success px-5 fw-bolder my-3",
@@ -62,13 +62,13 @@ const WishlistContextProvider = ({ children }) => {
       });
 
       console.log(data);
-      localStorage.setItem("wishlistDataIds", JSON.stringify(data.data));
-      setDataProductId(JSON.parse(localStorage.getItem("wishlistDataIds")));
+      // localStorage.setItem("wishlistDataIds", JSON.stringify(data.data));
+      // setDataProductId(JSON.parse(localStorage.getItem("wishlistDataIds")));
       toast.success(data.message, {
         duration: 3000,
-        className: "text-success px-5 fw-bolder my-3",
+        className: "text-danger px-5 fw-bolder my-3",
         iconTheme: {
-          primary: "#198754",
+          primary: "#dc3545",
           secondary: "#fff",
         },
       });
@@ -83,7 +83,7 @@ const WishlistContextProvider = ({ children }) => {
 
   const handleAddOrRemoveWishlist = (dataProductId, actualId) => {
     if (
-      dataProductId === actualId &&
+      dataProductId?.id === actualId &&
       dataProductId &&
       localStorage.getItem("userToken") &&
       JSON.parse(localStorage.getItem("wishlistDataIds"))
@@ -106,7 +106,8 @@ const WishlistContextProvider = ({ children }) => {
       });
       setIsLoading(false);
       console.log(data);
-      setWishlistProducts(data.data);
+      localStorage.setItem("wishlistDataIds", JSON.stringify(data.data));
+      setWishlistProducts(JSON.parse(localStorage.getItem("wishlistDataIds")));
       setWishlistCount(data.count);
     } catch (error) {
       setIsLoading(false);
@@ -128,7 +129,6 @@ const WishlistContextProvider = ({ children }) => {
     <WishlistContext.Provider
       value={{
         addToWishlist,
-        dataProductId,
         removeFromWishlist,
         handleAddOrRemoveWishlist,
         wishlistProducts,
