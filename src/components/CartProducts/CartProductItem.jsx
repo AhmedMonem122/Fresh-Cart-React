@@ -1,18 +1,8 @@
-import { useState } from "react";
 import useCart from "../../hooks/use-cart";
-import { useEffect } from "react";
 
 const CartProductItem = ({ count, price, product }) => {
   const { removeFromCart, getLoggedUserCart, updateCartProductQuantity } =
     useCart();
-
-  const [productCount, setProductCount] = useState(count);
-
-  console.log(productCount);
-
-  useEffect(() => {
-    updateCartProductQuantity(product.id, `${productCount}`);
-  }, [productCount]);
 
   return (
     <div className="py-3 border-bottom border-1 border-dark d-flex align-items-center justify-content-between flex-column flex-md-row">
@@ -45,18 +35,14 @@ const CartProductItem = ({ count, price, product }) => {
       <div className="col-md-4 text-center d-flex align-items-center justify-content-center ">
         <button
           className="btn btn-outline-danger fw-bolder"
-          onClick={() => {
-            setProductCount(productCount - 1);
-          }}
+          onClick={() => updateCartProductQuantity(product.id, count, "minus")}
         >
           -
         </button>
         <h4 className="text-muted px-5">{count}</h4>
         <button
           className="btn btn-outline-success fw-bolder"
-          onClick={() => {
-            setProductCount(productCount + 1);
-          }}
+          onClick={() => updateCartProductQuantity(product.id, count, "plus")}
         >
           +
         </button>

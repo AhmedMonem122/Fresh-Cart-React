@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import greenShoppingCart from "../../assets/images/green-shopping-cart.png";
 import CartProducts from "../../components/CartProducts/CartProducts";
 import useCart from "../../hooks/use-cart";
+import useAuth from "../../hooks/use-auth";
 import { useEffect } from "react";
 import Loading from "../../components/Loading/Loading";
 
@@ -14,6 +15,8 @@ const CartPage = () => {
     cartProducts,
   } = useCart();
 
+  const { userData } = useAuth();
+
   useEffect(() => {
     getLoggedUserCart();
   }, []);
@@ -21,7 +24,7 @@ const CartPage = () => {
   return (
     <Fragment>
       <h3 className="mt-5 pt-5 text-success fw-bolder text-center text-muted">
-        Welcome User to your Cart{" "}
+        Welcome {userData?.name} to your Cart{" "}
         <i className="fa-solid fa-cart-arrow-down text-success"></i>
       </h3>
       {isLoading ? (

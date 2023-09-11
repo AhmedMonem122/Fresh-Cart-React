@@ -1,6 +1,6 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
 import useWishlist from "../../hooks/use-wishlist";
+import useCart from "../../hooks/use-cart";
 
 const WishlistProductItem = ({
   imageCover,
@@ -12,6 +12,7 @@ const WishlistProductItem = ({
   id,
 }) => {
   const { removeFromWishlist, getLoggedUserWishlist } = useWishlist();
+  const { addToCart } = useCart();
 
   return (
     <div className="col-lg-3 col-md-6 col-sm-12">
@@ -54,11 +55,12 @@ const WishlistProductItem = ({
             <h6 className="text-muted">{ratingsAverage}</h6>
           </span>
         </div>
-        <Link to={`/productDetails/${id}`}>
-          <button className="btn btn-success text-white w-100 mb-2 rounded-5 fw-bolder">
-            Add To Cart
-          </button>
-        </Link>
+        <button
+          className="btn btn-success text-white w-100 mb-2 rounded-5 fw-bolder"
+          onClick={() => addToCart(id)}
+        >
+          Add To Cart
+        </button>
       </div>
     </div>
   );

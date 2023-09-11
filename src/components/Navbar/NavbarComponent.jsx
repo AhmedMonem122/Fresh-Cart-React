@@ -42,7 +42,7 @@ const NavbarComponent = () => {
             </Nav.Link>
           </Nav>
           <Nav>
-            {userData ? (
+            {userData && localStorage.getItem("userToken") ? (
               <Fragment>
                 {" "}
                 <Nav.Link as={Link} to="/cart" className="position-relative">

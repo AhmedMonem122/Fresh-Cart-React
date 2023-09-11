@@ -77,33 +77,102 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
-  const updateCartProductQuantity = async (productId, count) => {
-    try {
-      const { data } = await axios.put(
-        `${CART_BASE_URL}/${productId}`,
-        {
-          count,
-        },
-        {
-          headers: {
-            token: localStorage.getItem("userToken"),
+  const updateCartProductQuantity = async (productId, count, state) => {
+    if (count > 1 && state === "minus") {
+      try {
+        const { data } = await axios.put(
+          `${CART_BASE_URL}/${productId}`,
+          {
+            count: count - 1,
           },
-        }
-      );
+          {
+            headers: {
+              token: localStorage.getItem("userToken"),
+            },
+          }
+        );
+
+        console.log(data);
+        setNumOfCartItems(data.numOfCartItems);
+        setTotalCartPrice(data.data.totalCartPrice);
+        setCartProducts(data.data.products);
+
+        toast.success(data.status, {
+          duration: 3000,
+          className: "text-danger px-5 fw-bolder my-3",
+          iconTheme: {
+            primary: "#dc3545",
+            secondary: "#fff",
+          },
+        });
+      } catch (error) {
+        console.log(error);
+        toast.error(error.response.data.message, {
+          duration: 3000,
+          className: " text-danger px-5 fw-bolder my-3",
+        });
+      }
+    } else if (state === "plus") {
+      try {
+        const { data } = await axios.put(
+          `${CART_BASE_URL}/${productId}`,
+          {
+            count: count + 1,
+          },
+          {
+            headers: {
+              token: localStorage.getItem("userToken"),
+            },
+          }
+        );
+
+        console.log(data);
+        setNumOfCartItems(data.numOfCartItems);
+        setTotalCartPrice(data.data.totalCartPrice);
+        setCartProducts(data.data.products);
+
+        toast.success(data.status, {
+          duration: 3000,
+          className: "text-success px-5 fw-bolder my-3",
+          iconTheme: {
+            primary: "#198754",
+            secondary: "#fff",
+          },
+        });
+      } catch (error) {
+        console.log(error);
+        toast.error(error.response.data.message, {
+          duration: 3000,
+          className: " text-danger px-5 fw-bolder my-3",
+        });
+      }
+    } else {
+      removeFromCart(productId);
+    }
+  };
+
+  const clearUserCart = async () => {
+    try {
+      const { data } = await axios.delete(CART_BASE_URL, {
+        headers: {
+          token: localStorage.getItem("userToken"),
+        },
+      });
 
       console.log(data);
-      setNumOfCartItems(data.numOfCartItems);
-      setTotalCartPrice(data.data.totalCartPrice);
-      setCartProducts(data.data.products);
 
-      toast.success(data.status, {
+      toast.success(data.message, {
         duration: 3000,
-        className: "text-success px-5 fw-bolder my-3",
+        className: "text-danger px-5 fw-bolder my-3",
         iconTheme: {
-          primary: "#198754",
+          primary: "#dc3545",
           secondary: "#fff",
         },
       });
+
+      setNumOfCartItems(0);
+      setTotalCartPrice(0);
+      setCartProducts([]);
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message, {
@@ -129,10 +198,16 @@ const CartContextProvider = ({ children }) => {
     } catch (error) {
       setIsLoading(false);
       console.log(error);
-      toast.error(error.response.data.message, {
-        duration: 3000,
-        className: " text-danger px-5 fw-bolder my-3",
-      });
+      if (error.response.data?.message) {
+        // toast.error(error.response.data.message, {
+        //   duration: 3000,
+        //   className: " text-danger px-5 fw-bolder my-3",
+        // });
+
+        setNumOfCartItems(0);
+        setTotalCartPrice(0);
+        setCartProducts([]);
+      }
     }
   };
 
@@ -147,6 +222,7 @@ const CartContextProvider = ({ children }) => {
         getLoggedUserCart,
         removeFromCart,
         updateCartProductQuantity,
+        clearUserCart,
       }}
     >
       {children}

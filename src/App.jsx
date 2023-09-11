@@ -45,7 +45,14 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/cart" element={<CartPage />} />
+              <Route
+                path="/cart"
+                element={
+                  <ProtectedRoute>
+                    <CartPage />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/productDetails/:id" element={<ProductDetails />} />
               <Route
                 path="/categoryProducts/:id"
