@@ -16,7 +16,7 @@ const useFetchPagination = (apiUrl) => {
         data,
         metadata: { numberOfPages },
       },
-    } = await axios.get(`${apiUrl}?page=${pageNumber}`);
+    } = await axios.get(`${apiUrl}?page=${pageNumber}&limit=8`);
 
     setItems(data);
 

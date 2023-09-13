@@ -1,8 +1,10 @@
+import ScrollToTop from "react-scroll-to-top";
 import { paymentFooterData, storesFooterData } from "./footerData";
 
 const Footer = () => {
   return (
     <footer className="text-center">
+      <ScrollToTop smooth top={500} color="#0aad0a" />
       <div className="container p-4 my-5 ">
         <div className="row  justify-content-between align-items-center ">
           <div className="col-md-12">
