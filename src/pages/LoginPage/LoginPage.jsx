@@ -1,10 +1,17 @@
+import { Fragment } from "react";
 import Login from "../../components/Login/Login";
+import { Helmet } from "react-helmet-async";
 
 const LoginPage = () => {
   return (
-    <div className="container py-5 my-5">
-      <Login />
-    </div>
+    <Fragment>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
+      <div className="container py-5 my-5">
+        <Login />
+      </div>
+    </Fragment>
   );
 };
 

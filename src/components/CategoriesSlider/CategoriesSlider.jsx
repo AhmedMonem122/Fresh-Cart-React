@@ -26,14 +26,39 @@ const CategoriesSlider = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 4,
+    slidesToScroll: 6,
+    initialSlide: 0,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 2,
+        },
+      },
+    ],
   };
   return (
     <Fragment>
       <div className="text-category d-flex align-items-center">
         <h3 className="py-4">Shop Popular</h3>
-        <h3 className="text-success px-2">Categories</h3>
+        <h3 className="text-main px-2">Categories</h3>
       </div>
 
       <Slider {...settings}>

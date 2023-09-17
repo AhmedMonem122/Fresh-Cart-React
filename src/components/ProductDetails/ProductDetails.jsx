@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Fragment, useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
 import useCart from "../../hooks/use-cart";
+import { Helmet } from "react-helmet-async";
 
 const PRODUCT_DETAILS_URL = "/products/";
 
@@ -19,6 +20,30 @@ const ProductDetails = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    initialSlide: 0,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const { id } = useParams();
@@ -47,6 +72,10 @@ const ProductDetails = () => {
 
   return (
     <div className="container mt-5">
+      <Helmet>
+        <title>Product Details</title>
+      </Helmet>
+
       <div className="row align-items-center gx-5">
         {loading ? (
           <Loading />

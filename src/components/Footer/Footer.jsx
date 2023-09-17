@@ -3,7 +3,7 @@ import { paymentFooterData, storesFooterData } from "./footerData";
 
 const Footer = () => {
   return (
-    <footer className="text-center">
+    <footer className="text-center footer">
       <ScrollToTop smooth top={500} color="#0aad0a" />
       <div className="container p-4 my-5 ">
         <div className="row  justify-content-between align-items-center ">
@@ -27,6 +27,8 @@ const Footer = () => {
         </div>
       </div>
       <div className="container">
+        <hr />
+
         <div className="row">
           <div className="col-md-6 d-flex align-items-center justify-content-center flex-column flex-md-row">
             <h6 className="pe-md-4">Payment Partners</h6>
@@ -55,6 +57,8 @@ const Footer = () => {
             })}
           </div>
         </div>
+
+        <hr />
       </div>
       <div className="copy-right">
         <p className="m-0 text-center py-4 ">

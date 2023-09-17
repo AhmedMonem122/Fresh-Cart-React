@@ -3,6 +3,7 @@ import notFoundProduct from "../../assets/images/no-product-found.png";
 import Loading from "../Loading/Loading";
 import useFetch from "../../hooks/use-fetch";
 import BrandProductItem from "./BrandProductItem";
+import { Helmet } from "react-helmet-async";
 
 const BrandProducts = () => {
   const { id } = useParams();
@@ -17,6 +18,10 @@ const BrandProducts = () => {
 
   return (
     <div className="container py-2">
+      <Helmet>
+        <title>Brand Products</title>
+      </Helmet>
+
       <div className="row g-5 my-5">
         {loading ? (
           <Loading />
@@ -31,11 +36,13 @@ const BrandProducts = () => {
             );
           })
         ) : (
-          <img
-            src={notFoundProduct}
-            alt="not found product"
-            className="w-75 m-auto"
-          />
+          <div className="d-flex justify-content-center align-items-center vh-100">
+            <img
+              src={notFoundProduct}
+              alt="not found product"
+              className="w-75 m-auto"
+            />
+          </div>
         )}
       </div>
     </div>

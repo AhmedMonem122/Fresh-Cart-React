@@ -66,7 +66,7 @@ const BrandProductItem = ({
             )}
           </h6>
           <span className="d-flex px-3">
-            <i className="fas fa-star star-main  px-1 fs-5"></i>
+            <i className="fas fa-star rating-color  px-1 fs-5"></i>
             <h6 className="text-muted">{ratingsAverage}</h6>
           </span>
         </div>

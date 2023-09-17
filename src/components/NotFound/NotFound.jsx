@@ -1,7 +1,14 @@
+import { Helmet } from "react-helmet-async";
+import Error from "../../assets/images/404.png";
+
 const NotFound = () => {
   return (
-    <div className="page vh-100 d-flex justify-content-center align-items-center ">
-      <h2 className="text-center text-danger">Error 404: Page not found!</h2>
+    <div className="d-flex justify-content-center align-items-center vh-100">
+      <Helmet>
+        <title>Page Not Found</title>
+      </Helmet>
+
+      <img className="w-100" src={Error} alt="error" />
     </div>
   );
 };

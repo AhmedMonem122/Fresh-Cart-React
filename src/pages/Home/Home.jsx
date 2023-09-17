@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Loading from "../../components/Loading/Loading";
 import { Fragment } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -17,6 +18,10 @@ const Home = () => {
 
   return (
     <div className="container py-4">
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
+
       {loading ? (
         <Loading />
       ) : (

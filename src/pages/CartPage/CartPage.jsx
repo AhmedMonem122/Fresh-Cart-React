@@ -5,6 +5,7 @@ import useCart from "../../hooks/use-cart";
 import useAuth from "../../hooks/use-auth";
 import { useEffect } from "react";
 import Loading from "../../components/Loading/Loading";
+import { Helmet } from "react-helmet-async";
 
 const CartPage = () => {
   const {
@@ -23,6 +24,10 @@ const CartPage = () => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>Cart</title>
+      </Helmet>
+
       <h3 className="mt-5 pt-5 text-success fw-bolder text-center text-muted">
         Welcome {userData?.name} to your Cart{" "}
         <i className="fa-solid fa-cart-arrow-down text-success"></i>
