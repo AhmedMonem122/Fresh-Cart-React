@@ -4,8 +4,6 @@ const Pagination = ({ pageCount, setStart, setEnd }) => {
   const handlePageClick = ({ selected }) => {
     setStart(selected * 8);
     setEnd((selected + 1) * 8);
-
-    console.log(selected + 1);
   };
 
   return (

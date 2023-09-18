@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { Fragment, useState } from "react";
 import * as Yup from "yup";
 import useAuth from "../../hooks/use-auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../../apis/axios";
 import { toast } from "react-hot-toast";
 import useWishlist from "../../hooks/use-wishlist";
@@ -34,7 +34,6 @@ const Login = () => {
     },
     validationSchema: validate,
     onSubmit: function (values) {
-      console.log("Submit", values);
       sendLoginData(values);
     },
   });
@@ -44,7 +43,6 @@ const Login = () => {
     try {
       const { data } = await axios.post("/auth/signin", obj);
       setLoader(false);
-      console.log(data);
       if (data.message === "success") {
         toast.success("Welcome To Fresh Cart", {
           duration: 3000,
@@ -62,7 +60,6 @@ const Login = () => {
       }
     } catch (error) {
       setLoader(false);
-      console.log("Error : ", error);
       if (error.response.data?.errors) {
         toast.error(error.response.data.errors.msg, {
           duration: 3000,
@@ -144,9 +141,9 @@ const Login = () => {
               Login
             </button>
           )}
-          <a href="/forgetpassword">
+          <Link to="/forgotPassword">
             <h5 className="text-muted forgetPass">Forgot Your Password ?</h5>
-          </a>
+          </Link>
         </div>
       </form>
     </Fragment>

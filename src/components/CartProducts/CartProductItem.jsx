@@ -16,7 +16,7 @@ const CartProductItem = ({ count, price, product }) => {
         />
       </div>
       <div className="col-md-4 text-center ">
-        <div className="product rounded-5 ">
+        <div className="rounded-5 ">
           <h6 className="text-success">{product.title}</h6>
           <h6 className="text-muted">
             Price : <span className="text-success"> {price} EGP</span>

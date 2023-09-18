@@ -33,7 +33,6 @@ const WishlistContextProvider = ({ children }) => {
         }
       );
 
-      console.log(data);
       // localStorage.setItem("wishlistDataIds", JSON.stringify(data.data));
       // setDataProductId(JSON.parse(localStorage.getItem("wishlistDataIds")));
       toast.success(data.message, {
@@ -45,7 +44,6 @@ const WishlistContextProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message, {
         duration: 3000,
         className: " text-danger px-5 fw-bolder my-3",
@@ -61,7 +59,6 @@ const WishlistContextProvider = ({ children }) => {
         },
       });
 
-      console.log(data);
       // localStorage.setItem("wishlistDataIds", JSON.stringify(data.data));
       // setDataProductId(JSON.parse(localStorage.getItem("wishlistDataIds")));
       toast.success(data.message, {
@@ -73,7 +70,6 @@ const WishlistContextProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message, {
         duration: 3000,
         className: " text-danger px-5 fw-bolder my-3",
@@ -105,13 +101,11 @@ const WishlistContextProvider = ({ children }) => {
         },
       });
       setIsLoading(false);
-      console.log(data);
       localStorage.setItem("wishlistDataIds", JSON.stringify(data.data));
       setWishlistProducts(JSON.parse(localStorage.getItem("wishlistDataIds")));
       setWishlistCount(data.count);
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
       toast.error(error.response.data.message, {
         duration: 3000,
         className: " text-danger px-5 fw-bolder my-3",
@@ -122,8 +116,6 @@ const WishlistContextProvider = ({ children }) => {
   // useEffect(() => {
   //   getLoggedUserWishlist();
   // }, [wishlistCount]);
-
-  console.log(wishlistProducts);
 
   return (
     <WishlistContext.Provider

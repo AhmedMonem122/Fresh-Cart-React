@@ -42,7 +42,6 @@ const Register = () => {
     },
     validationSchema: validate,
     onSubmit: (values) => {
-      console.log(values);
       sendRegisterData(values);
     },
   });
@@ -52,7 +51,6 @@ const Register = () => {
     try {
       const { data } = await axios.post("/auth/signup", obj);
       setLoader(false);
-      console.log(data);
       if (data.message === "success") {
         toast.success("Congratulations", {
           duration: 3000,
@@ -62,7 +60,6 @@ const Register = () => {
       }
     } catch (error) {
       setLoader(false);
-      console.log("Error : ", error);
       if (error.response.data?.errors) {
         toast.error(error.response.data.errors.msg, {
           duration: 3000,

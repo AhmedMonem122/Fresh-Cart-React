@@ -11,6 +11,7 @@ const CartContextProvider = ({ children }) => {
   const [numOfCartItems, setNumOfCartItems] = useState(0);
   const [totalCartPrice, setTotalCartPrice] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
+  const [cartId, setCartId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const addToCart = async (productId) => {
@@ -27,7 +28,6 @@ const CartContextProvider = ({ children }) => {
         }
       );
 
-      console.log(data);
       setNumOfCartItems(data.numOfCartItems);
       setTotalCartPrice(data.data.totalCartPrice);
       toast.success(data.message, {
@@ -39,7 +39,6 @@ const CartContextProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message, {
         duration: 3000,
         className: " text-danger px-5 fw-bolder my-3",
@@ -55,7 +54,6 @@ const CartContextProvider = ({ children }) => {
         },
       });
 
-      console.log(data);
       setNumOfCartItems(data.numOfCartItems);
       setTotalCartPrice(data.data.totalCartPrice);
       setCartProducts(data.data.products);
@@ -69,7 +67,6 @@ const CartContextProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message, {
         duration: 3000,
         className: " text-danger px-5 fw-bolder my-3",
@@ -92,7 +89,6 @@ const CartContextProvider = ({ children }) => {
           }
         );
 
-        console.log(data);
         setNumOfCartItems(data.numOfCartItems);
         setTotalCartPrice(data.data.totalCartPrice);
         setCartProducts(data.data.products);
@@ -106,7 +102,6 @@ const CartContextProvider = ({ children }) => {
           },
         });
       } catch (error) {
-        console.log(error);
         toast.error(error.response.data.message, {
           duration: 3000,
           className: " text-danger px-5 fw-bolder my-3",
@@ -126,7 +121,6 @@ const CartContextProvider = ({ children }) => {
           }
         );
 
-        console.log(data);
         setNumOfCartItems(data.numOfCartItems);
         setTotalCartPrice(data.data.totalCartPrice);
         setCartProducts(data.data.products);
@@ -140,7 +134,6 @@ const CartContextProvider = ({ children }) => {
           },
         });
       } catch (error) {
-        console.log(error);
         toast.error(error.response.data.message, {
           duration: 3000,
           className: " text-danger px-5 fw-bolder my-3",
@@ -159,8 +152,6 @@ const CartContextProvider = ({ children }) => {
         },
       });
 
-      console.log(data);
-
       toast.success(data.message, {
         duration: 3000,
         className: "text-danger px-5 fw-bolder my-3",
@@ -174,7 +165,6 @@ const CartContextProvider = ({ children }) => {
       setTotalCartPrice(0);
       setCartProducts([]);
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message, {
         duration: 3000,
         className: " text-danger px-5 fw-bolder my-3",
@@ -191,13 +181,12 @@ const CartContextProvider = ({ children }) => {
         },
       });
       setIsLoading(false);
-      console.log(data);
       setNumOfCartItems(data.numOfCartItems);
       setTotalCartPrice(data.data.totalCartPrice);
       setCartProducts(data.data.products);
+      setCartId(data.data._id);
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
       if (error.response.data?.message) {
         // toast.error(error.response.data.message, {
         //   duration: 3000,
@@ -208,6 +197,20 @@ const CartContextProvider = ({ children }) => {
         setTotalCartPrice(0);
         setCartProducts([]);
       }
+    }
+  };
+
+  const onlinePayment = async (cartId, shippingAddress) => {
+    try {
+      const res = await axios.post(
+        `orders/checkout-session/${cartId}?url=http://localhost:5173`,
+        { shippingAddress },
+        { headers: { token: localStorage.getItem("userToken") } }
+      );
+
+      return res;
+    } catch (err) {
+      return err;
     }
   };
 
@@ -223,6 +226,8 @@ const CartContextProvider = ({ children }) => {
         removeFromCart,
         updateCartProductQuantity,
         clearUserCart,
+        cartId,
+        onlinePayment,
       }}
     >
       {children}

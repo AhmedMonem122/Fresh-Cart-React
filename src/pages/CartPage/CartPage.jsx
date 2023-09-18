@@ -6,6 +6,7 @@ import useAuth from "../../hooks/use-auth";
 import { useEffect } from "react";
 import Loading from "../../components/Loading/Loading";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const {
@@ -14,6 +15,7 @@ const CartPage = () => {
     totalCartPrice,
     isLoading,
     cartProducts,
+    clearUserCart,
   } = useCart();
 
   const { userData } = useAuth();
@@ -53,11 +55,23 @@ const CartPage = () => {
                 Total Price{" "}
                 <span className="text-success">{totalCartPrice} EGP</span>
               </h5>
-              <a href="/payment">
+              <Link to="/payment">
                 <button className="btn btn-outline-success fw-bolder my-3 w-75 mx-4">
                   CheckOut
                 </button>
-              </a>
+              </Link>
+
+              {cartProducts.length > 1 && (
+                <button
+                  className="btn btn-outline-danger fw-bolder my-3 w-75 mx-4"
+                  onClick={() => {
+                    clearUserCart();
+                    getLoggedUserCart();
+                  }}
+                >
+                  Clear Cart
+                </button>
+              )}
             </div>
           </div>
 

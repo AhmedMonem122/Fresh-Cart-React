@@ -12,8 +12,6 @@ const Categories = () => {
   //   getAllCategories();
   // }, []);
 
-  console.log(categories);
-
   return (
     <div className="row align-items-center g-5">
       {loading ? (

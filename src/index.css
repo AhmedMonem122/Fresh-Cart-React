@@ -161,10 +161,10 @@ a:hover {
   border: 2px solid #36bb70;
 }
 
-.orderPayment {
+/* .orderPayment {
   height: 250px;
   width: 250px;
-}
+} */
 
 nav {
   transition: background-color 0.5s, box-shadow 0.2s !important;

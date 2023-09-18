@@ -2,7 +2,6 @@ import ReactPaginate from "react-paginate";
 
 const AllProductsPagination = ({ pageCount, setPage }) => {
   const handlePageClick = ({ selected }) => {
-    console.log(selected + 1);
     setPage(selected + 1);
   };
 

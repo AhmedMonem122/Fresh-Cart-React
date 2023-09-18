@@ -14,13 +14,9 @@ const CategoryProductItem = ({
   const { wishlistProducts, handleAddOrRemoveWishlist, getLoggedUserWishlist } =
     useWishlist();
 
-  console.log(wishlistProducts);
-
   const productId = wishlistProducts.find(
     (wishlistProduct) => wishlistProduct.id === id
   );
-
-  console.log(productId);
 
   return (
     <div className="col-lg-3 col-md-6 col-sm-12">

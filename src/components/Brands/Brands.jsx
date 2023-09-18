@@ -9,8 +9,6 @@ const BRANDS_URL = "/brands";
 const Brands = () => {
   const [brands, loading, pageCount, setPage] = useFetchPagination(BRANDS_URL);
 
-  console.log(brands);
-
   return (
     <div className="row align-items-center g-5">
       {loading ? (

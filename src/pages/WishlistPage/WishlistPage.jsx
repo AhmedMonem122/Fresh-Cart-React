@@ -6,8 +6,6 @@ import { Helmet } from "react-helmet-async";
 const WishlistPage = () => {
   const { userData } = useAuth();
 
-  console.log(userData);
-
   return (
     <Fragment>
       <Helmet>

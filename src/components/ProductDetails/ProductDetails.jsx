@@ -48,8 +48,6 @@ const ProductDetails = () => {
 
   const { id } = useParams();
 
-  console.log(id);
-
   const getProductDetails = async () => {
     setLoading(true);
 
@@ -59,7 +57,6 @@ const ProductDetails = () => {
 
     setProductDetails(data);
 
-    console.log(data);
     setLoading(false);
   };
 

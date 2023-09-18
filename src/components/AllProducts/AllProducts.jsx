@@ -10,8 +10,6 @@ const AllProducts = () => {
   const [products, loading, pageCount, setPage] =
     useFetchPagination(PRODUCTS_URL);
 
-  console.log(products);
-
   return (
     <div className="row align-items-center g-5">
       {loading ? (

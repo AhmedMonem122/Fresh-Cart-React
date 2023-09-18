@@ -12,10 +12,6 @@ const BrandProducts = () => {
 
   const [brandProducts, loading] = useFetch(BRAND_PRODUCTS_URL);
 
-  console.log(id);
-
-  console.log(brandProducts);
-
   return (
     <div className="container py-2">
       <Helmet>

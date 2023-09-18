@@ -16,10 +16,6 @@ const CategoryProducts = () => {
   //   getAllCategoryProducts();
   // }, []);
 
-  console.log(id);
-
-  console.log(categoryProducts);
-
   return (
     <div className="container py-2">
       <Helmet>

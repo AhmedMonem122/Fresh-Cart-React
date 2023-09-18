@@ -22,6 +22,11 @@ import CartPage from "./pages/CartPage/CartPage";
 import CartContextProvider from "./context/CartContextProvider";
 import Profile from "./pages/Profile/Profile";
 import { HelmetProvider } from "react-helmet-async";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage/ForgotPasswordPage";
+import VerifyCodePage from "./pages/VerifyCodePage/VerifyCodePage";
+import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
+import AllOrdersPage from "./pages/AllOrdersPage/AllOrdersPage";
+import Payment from "./components/Payment/Payment";
 
 function App() {
   return (
@@ -41,6 +46,12 @@ function App() {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route
+                  path="/forgotPassword"
+                  element={<ForgotPasswordPage />}
+                />
+                <Route path="/verify-code" element={<VerifyCodePage />} />
+                <Route path="/reset-password" element={<ResetPasswordPage />} />
+                <Route
                   path="/wishlist"
                   element={
                     <ProtectedRoute>
@@ -57,10 +68,26 @@ function App() {
                   }
                 />
                 <Route
+                  path="/payment"
+                  element={
+                    <ProtectedRoute>
+                      <Payment />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
                   path="/profile"
                   element={
                     <ProtectedRoute>
                       <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/allOrders"
+                  element={
+                    <ProtectedRoute>
+                      <AllOrdersPage />
                     </ProtectedRoute>
                   }
                 />

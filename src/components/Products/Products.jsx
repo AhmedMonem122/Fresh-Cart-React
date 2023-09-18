@@ -18,7 +18,6 @@ const Products = () => {
 
     setProducts(data);
 
-    console.log(data);
     setPageCount(Math.ceil(data.length / 8));
   };
 
@@ -26,11 +25,7 @@ const Products = () => {
     getAllProducts();
   }, []);
 
-  console.log(products);
-
   const renderedProductsPerPage = () => {
-    console.log(start, end);
-
     return products
       .map((product) => {
         return <ProductItem key={product.id} {...product} product={product} />;
