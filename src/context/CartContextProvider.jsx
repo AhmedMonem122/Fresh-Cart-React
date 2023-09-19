@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 
 const CART_BASE_URL = "/cart";
+const SITE_URL = window.location.origin;
 
 export const CartContext = createContext();
 
@@ -203,7 +204,7 @@ const CartContextProvider = ({ children }) => {
   const onlinePayment = async (cartId, shippingAddress) => {
     try {
       const res = await axios.post(
-        `orders/checkout-session/${cartId}?url=http://localhost:5173`,
+        `orders/checkout-session/${cartId}?url=${SITE_URL}`,
         { shippingAddress },
         { headers: { token: localStorage.getItem("userToken") } }
       );

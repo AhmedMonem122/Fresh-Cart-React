@@ -84,7 +84,7 @@ function App() {
                   }
                 />
                 <Route
-                  path="/allOrders"
+                  path="/allorders"
                   element={
                     <ProtectedRoute>
                       <AllOrdersPage />

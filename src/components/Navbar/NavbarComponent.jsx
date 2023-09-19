@@ -109,7 +109,7 @@ const NavbarComponent = () => {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink as={Link} to="/allOrders" className="nav-link">
+                  <NavLink as={Link} to="/allorders" className="nav-link">
                     All Orders
                   </NavLink>
                 </li>
